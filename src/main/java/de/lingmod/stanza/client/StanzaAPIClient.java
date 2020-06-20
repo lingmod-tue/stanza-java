@@ -6,6 +6,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 import de.lingmod.stanza.data.AnalysisRequest;
@@ -21,13 +22,12 @@ public class StanzaAPIClient {
 		target = client.target(url);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<List<TokenOrWord>> analyze(String text, String lang) {
 		AnalysisRequest req = new AnalysisRequest();
 		req.setLang(lang);
 		req.setText(text);
 		return target.request(MediaType.APPLICATION_JSON)
-		.post(Entity.entity(req, MediaType.APPLICATION_JSON), List.class);
+		.post(Entity.entity(req, MediaType.APPLICATION_JSON), new GenericType<List<List<TokenOrWord>>>() {});
 	}
 	
 	public static void main(String[] args) {
