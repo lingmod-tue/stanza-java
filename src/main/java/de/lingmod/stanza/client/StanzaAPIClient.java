@@ -40,7 +40,7 @@ public class StanzaAPIClient {
 	}
 	
 	public static void main(String[] args) throws ResourceInitializationException, CASException, IOException {
-		StanzaAPIClient client = new StanzaAPIClient("http://rinia.sfs.uni-tuebingen.de:8000/analyze");
+		StanzaAPIClient client = new StanzaAPIClient("http://localhost:8000/analyze");
 		String inputText = "Im Leben läuft manches anders, als man denkt. Hier ist noch ein Satz.";
 		String langCode = "de";
 		List<List<TokenOrWord>> result = client.analyze(inputText, langCode);
