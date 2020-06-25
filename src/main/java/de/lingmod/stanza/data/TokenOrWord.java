@@ -83,7 +83,7 @@ public class TokenOrWord {
 	
 	@JsonbTransient
 	public boolean isToken() {
-		return misc.contains("start_char");
+		return misc != null && misc.contains("start_char");
 	}
 	@Override
 	public String toString() {
