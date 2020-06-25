@@ -59,5 +59,17 @@
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
 		</dependency>
+		<dependency>
+  			<groupId>org.dkpro.core</groupId>
+  			<artifactId>dkpro-core-api-segmentation-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.core</groupId>
+			<artifactId>dkpro-core-api-ner-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dkpro.core</groupId>
+			<artifactId>dkpro-core-api-syntax-asl</artifactId>
+		</dependency>
 	</dependencies>
 </project>
