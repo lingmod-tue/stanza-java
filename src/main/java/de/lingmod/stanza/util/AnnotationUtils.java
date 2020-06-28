@@ -43,6 +43,7 @@ public class AnnotationUtils {
 					AnnotationInfo annInfo = getAnnotationInfo(tow);
 					annInfo.begin += offset;
 					annInfo.end += offset;
+					surfaceForms.add(annInfo);
 					if (tow.isWord()) {
 						sentTokens.add(annInfo);
 					} else {
@@ -67,7 +68,6 @@ public class AnnotationUtils {
 						docText.replace(annInfo.begin, annInfo.end, replacement);
 						int diff = replacement.length() - original.length();
 						annInfo.end += diff;
-						surfaceForms.add(annInfo);
 						offset += diff;
 					}
 				}
