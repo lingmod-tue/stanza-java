@@ -72,4 +72,11 @@
 			<artifactId>dkpro-core-api-syntax-asl</artifactId>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+   		<repository>
+     			<id>github</id>
+     			<name>GitHub lingmod-tue Apache Maven Packages</name>
+     			<url>https://maven.pkg.github.com/lingmod-tue/stanza-java</url>
+   		</repository>
+	</distributionManagement>
 </project>
