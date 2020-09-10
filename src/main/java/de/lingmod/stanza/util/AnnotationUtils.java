@@ -20,6 +20,7 @@ import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.SurfaceForm;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.core.api.syntax.type.dependency.Dependency;
+import de.tudarmstadt.ukp.dkpro.core.api.syntax.type.dependency.ROOT;
 
 public class AnnotationUtils {
 
@@ -151,7 +152,7 @@ public class AnnotationUtils {
 				}
 
 				// dependencies
-				Dependency dep = new Dependency(jcas);
+				Dependency dep = word.stanzaToken.getHead() == 0 ? new ROOT(jcas) : new Dependency(jcas);
 				dep.setBegin(word.begin);
 				dep.setEnd(word.end);
 				dep.setDependencyType(word.stanzaToken.getDeprel());
@@ -161,8 +162,15 @@ public class AnnotationUtils {
 			}
 			// now that we have all the token annotations, set the dependency heads
 			for (AnnotationInfo word : sentTokens) {
-				word.uimaDependentAnn.setGovernor(
-						sentTokens.get(word.stanzaToken.getHead()).uimaToken);
+				Dependency d = word.uimaDependentAnn;
+				Token governor = null;
+				if (d instanceof ROOT) {
+					// need to handle ROOT differently
+					governor = d.getDependent();
+				} else {
+					governor = sentTokens.get(word.stanzaToken.getHead()-1).uimaToken;
+				}
+				d.setGovernor(governor);
 			}
 		}
 	}
